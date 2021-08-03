@@ -8,29 +8,27 @@ ARG SRC="${PKG}-${VER}.${OS}-${ARCH}"
 ARG UID="nobody"
 ARG GID="nobody"
 
-LABEL   ORG="Armedia LLC" \
-        APP="Prometheus Node Exporter" \
-        VERSION="${VER}" \
-        IMAGE_SOURCE="https://github.com/ArkCase/ark_prometheus_nodeexp" \
-        MAINTAINER="Armedia LLC"
+LABEL ORG="Armedia LLC"
+LABEL MAINTAINER="Armedia LLC"
+LABEL APP="Prometheus Node Exporter"
+LABEL VERSION="${VER}"
+LABEL IMAGE_SOURCE="https://github.com/ArkCase/ark_prometheus_nodeexp"
 
 # Modify to fetch from S3 ...
 RUN curl \
         -L "https://github.com/prometheus/${PKG}/releases/download/v${VER}/${SRC}.tar.gz" \
-        -o "package.tar.gz" && \
-    tar -xzvf "package.tar.gz" && \
-    mv -vif \
+        -o - | tar -xzvf -
+RUN mv -vif \
         "${SRC}/LICENSE" \
-        "/LICENSE" && \
-    mv -vif \
+        "/LICENSE"
+RUN mv -vif \
         "${SRC}/NOTICE" \
-        "/NOTICE" && \
-    mv -vif \
+        "/NOTICE"
+RUN mv -vif \
         "${SRC}/node_exporter" \
-        "/bin/node_exporter" && \
-    rm -rvf \
-        "${SRC}" \
-        "package.tar.gz"
+        "/bin/node_exporter"
+RUN rm -rvf \
+        "${SRC}"
 
 USER        ${UID}
 EXPOSE      9100
