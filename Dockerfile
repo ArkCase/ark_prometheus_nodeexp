@@ -34,4 +34,4 @@ RUN curl \
 
 USER        ${UID}
 EXPOSE      9100
-CMD         [ "/bin/node_exporter" ]
+ENTRYPOINT  [ "/bin/node_exporter" ]
