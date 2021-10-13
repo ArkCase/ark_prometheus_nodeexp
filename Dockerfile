@@ -5,7 +5,7 @@ FROM 345280441424.dkr.ecr.ap-south-1.amazonaws.com/ark_base:latest
 #
 ARG ARCH="amd64"
 ARG OS="linux"
-ARG VER="1.2.0"
+ARG VER="1.2.2"
 ARG PKG="node_exporter"
 ARG SRC="${PKG}-${VER}.${OS}-${ARCH}"
 ARG UID="root"
