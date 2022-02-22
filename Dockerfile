@@ -5,10 +5,10 @@ FROM 345280441424.dkr.ecr.ap-south-1.amazonaws.com/ark_base:latest
 #
 ARG ARCH="amd64"
 ARG OS="linux"
-ARG VER="1.2.0"
+ARG VER="1.3.1"
 ARG PKG="node_exporter"
 ARG SRC="${PKG}-${VER}.${OS}-${ARCH}"
-ARG UID="prometheus"
+ARG UID="root"
 
 #
 # Some important labels
@@ -22,7 +22,7 @@ LABEL IMAGE_SOURCE="https://github.com/ArkCase/ark_prometheus_nodeexp"
 #
 # Create the required user
 #
-RUN useradd --system --user-group "${UID}"
+#RUN useradd --system --user-group "${UID}"
 
 #
 # Download the primary artifact
